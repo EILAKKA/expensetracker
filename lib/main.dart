@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Expense Tracker',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: "Inter"),
       home: OnboardingScreen(),
     );
   }
