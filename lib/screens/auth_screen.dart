@@ -1,4 +1,6 @@
 import 'package:expenstracker/constants/colors.dart';
+import 'package:expenstracker/screens/main_screen.dart';
+import 'package:expenstracker/services/user_services.dart';
 import 'package:expenstracker/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -159,14 +161,34 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       SizedBox(height: 30),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           if (_formkey.currentState!.validate()) {
                             // form is valid, process data
-                            String userName = _userNameController.text;
-                            String email = _userEmailController.text;
-                            String password = _userPasswordController.text;
-                            String confirmPassword =
+                            String userNameC = _userNameController.text;
+                            String emailC = _userEmailController.text;
+                            String passwordC = _userPasswordController.text;
+                            String confirmPasswordC =
                                 _userConfirmPasswordController.text;
+
+                            //sav ethe user name and email in the devise storage
+
+                            await UserServices.storeUserDetails(
+                              userName: userNameC,
+                              email: emailC,
+                              password: passwordC,
+                              confirmPassword: confirmPasswordC,
+                              context: context,
+                            );
+
+                            // navigate to the main screen
+                            if (context.mounted) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MainScreen(),
+                                ),
+                              );
+                            }
                           }
                         },
                         child: CustomButton(
