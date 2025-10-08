@@ -11,9 +11,9 @@ import 'package:flutter/material.dart';
 
 class TxData {
   static final List<Widget> screens = [
+    AddTransactionPage(),
     HomePage(),
     AnalyticsView(),
-    AddTransactionPage(),
     TransactionListView(),
     SettingsView(),
   ];
