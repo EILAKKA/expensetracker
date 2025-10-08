@@ -1,13 +1,14 @@
+import 'package:expenstracker/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +21,13 @@ class _HomeViewState extends State<HomeView> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Colors.teal,
-                    border: Border.all(color: Colors.teal),
+                    color: kMainColor,
+                    border: Border.all(color: kMainColor),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: Image.asset(
-                      'assets/images/user.png',
+                      'assets/images/user.jpg',
                       width: 50,
                       fit: BoxFit.cover,
                     ),

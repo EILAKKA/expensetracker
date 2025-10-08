@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class AddIncomePage extends StatelessWidget {
-  const AddIncomePage({super.key});
+class AddIncomeView extends StatelessWidget {
+  const AddIncomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Add Income")));
+    return Column(children: [Text("Income")]);
   }
 }

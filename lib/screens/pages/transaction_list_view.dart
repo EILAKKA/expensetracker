@@ -12,15 +12,6 @@ class TransactionListView extends StatelessWidget {
           
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(
-            context,
-            '/add',
-          ); // ✅ navigate to AddTransactionPage
-        },
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }

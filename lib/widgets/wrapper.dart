@@ -1,5 +1,5 @@
 import 'package:expenstracker/screens/main_screen.dart';
-import 'package:expenstracker/screens/onboarding_screen.dart';
+import 'package:expenstracker/screens/auth/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 class Wrapper extends StatefulWidget {

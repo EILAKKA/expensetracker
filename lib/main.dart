@@ -34,3 +34,5 @@ class MyApp extends StatelessWidget {
     // );
   }
 }
+
+//flutter emulators --launch Pixel_7a

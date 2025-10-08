@@ -1,6 +1,6 @@
 import 'package:expenstracker/data/onboarding_data.dart';
-import 'package:expenstracker/screens/auth_screen.dart';
-import 'package:expenstracker/screens/shared_onboarding_screen.dart';
+import 'package:expenstracker/screens/auth/auth_screen.dart';
+import 'package:expenstracker/screens/auth/shared_onboarding_screen.dart';
 import 'package:expenstracker/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
