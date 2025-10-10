@@ -1,7 +1,10 @@
 // income category enum
+import 'package:expenstracker/models/transfer_model.dart';
 import 'package:flutter/material.dart';
 
 enum ExpenseCategory { shoping, subscription, food, health, transport }
+
+// payment methods enum
 
 // category images
 
@@ -26,6 +29,7 @@ class Expense {
   final String title;
   final double amount;
   final ExpenseCategory category;
+  final PaymentMethod paymentMethod;
   final DateTime date;
   final DateTime time;
   final String description;
@@ -35,6 +39,7 @@ class Expense {
     required this.title,
     required this.amount,
     required this.category,
+    required this.paymentMethod,
     required this.date,
     required this.time,
     required this.description,
