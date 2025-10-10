@@ -24,7 +24,7 @@ final Map<IncomeCategory, Color> incomeCategoryColors = {
 
 class Income {
   final int id;
-  final String title;
+
   final double amount;
   final IncomeCategory category;
   final PaymentMethod paymentMethod;
@@ -34,7 +34,7 @@ class Income {
 
   Income({
     required this.id,
-    required this.title,
+
     required this.amount,
     required this.category,
     required this.paymentMethod,
@@ -42,4 +42,31 @@ class Income {
     required this.time,
     required this.description,
   });
+
+  // Convert the income object to  a JSON object
+
+  Map<String, dynamic> toJSON() {
+    return {
+      'id': id,
+      'amount': amount,
+      'category': category.index,
+      'paymethod': paymentMethod.index,
+      'date': date.toIso8601String(),
+      'time': time.toIso8601String(),
+      'description': description,
+    };
+  }
+
+  // Create an income object from  a JSON object
+  factory Income.fromJSON(Map<String, dynamic> json) {
+    return Income(
+      id: json['id'],
+      amount: json['amount'],
+      category: IncomeCategory.values[json['category']],
+      paymentMethod: PaymentMethod.values[json["paymethod"]],
+      date: DateTime.parse(json['date']),
+      time: DateTime.parse(json['time']),
+      description: json['description'],
+    );
+  }
 }
