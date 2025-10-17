@@ -1,5 +1,11 @@
 import 'package:expenstracker/constants/colors.dart';
-import 'package:expenstracker/data/tx_data.dart';
+import 'package:expenstracker/models/expense_model.dart';
+import 'package:expenstracker/models/income_model.dart';
+import 'package:expenstracker/screens/views/add_expense_view.dart';
+import 'package:expenstracker/screens/views/add_income_view.dart';
+import 'package:expenstracker/screens/views/transfer_view.dart';
+import 'package:expenstracker/services/expense_service.dart';
+import 'package:expenstracker/services/income_service.dart';
 import 'package:expenstracker/widgets/button_tab.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +19,49 @@ class AddTransactionPage extends StatefulWidget {
 class _AddTransactionPageState extends State<AddTransactionPage> {
   bool isClicked = true;
   int clickedValue = 0;
+
+  List<Expense> expenseList = [];
+  List<Income> incomeList = [];
+
+  void fetchAllExpenses() async {
+    List<Expense> loadedExpenses = await ExpenseService().loadExpenses();
+    setState(() {
+      expenseList = loadedExpenses;
+    });
+  }
+
+  void fetchAllIncomes() async {
+    List<Income> loadedIncomes = await IncomeService().loadIncomes();
+    setState(() {
+      incomeList = loadedIncomes;
+    });
+  }
+
+  void addNewExpense(Expense newExpense) {
+    ExpenseService().saveExpense(newExpense, context);
+
+    setState(() {
+      expenseList.add(newExpense);
+    });
+  }
+
+  void addNewIncome(Income newIncome) {
+    IncomeService().saveIncome(newIncome, context);
+
+    setState(() {
+      incomeList.add(newIncome);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      fetchAllExpenses();
+      fetchAllIncomes();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,7 +192,11 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                       ],
                     ),
                   ),
-                  TxData.txViews[clickedValue],
+                  clickedValue == 0
+                      ? AddIncomeView(addIncome: addNewIncome)
+                      : clickedValue == 1
+                      ? AddExpenseView(addExpense: addNewExpense)
+                      : TransferView(),
                 ],
               ),
             ),

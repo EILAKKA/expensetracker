@@ -8,7 +8,7 @@ enum ExpenseCategory { shoping, subscription, food, health, transport }
 
 // category images
 
-final Map<ExpenseCategory, String> expenseCategoryImages = {
+final Map<ExpenseCategory, String> expenceCategoryImages = {
   ExpenseCategory.shoping: "aassets/images/bag.png",
   ExpenseCategory.subscription: "assets/images/bill.png",
   ExpenseCategory.food: "aassets/images/restaurant.png",
@@ -16,7 +16,7 @@ final Map<ExpenseCategory, String> expenseCategoryImages = {
   ExpenseCategory.transport: "assets/images/car.png",
 };
 // income ctegory colors
-final Map<ExpenseCategory, Color> expenseCategoryColors = {
+final Map<ExpenseCategory, Color> expenceCategoryColors = {
   ExpenseCategory.shoping: const Color(0XFFE57373),
   ExpenseCategory.subscription: const Color(0XFF81C784),
   ExpenseCategory.food: const Color(0XFF64B5F6),
@@ -43,7 +43,7 @@ class Expense {
     required this.description,
   });
 
-  // Convert the expense object to  a JSON object
+  // Convert the expence object to  a JSON object
 
   Map<String, dynamic> toJSON() {
     return {
@@ -57,7 +57,7 @@ class Expense {
     };
   }
 
-  // Create an expense object from  a JSON object
+  // Create an expence object from  a JSON object
   factory Expense.fromJSON(Map<String, dynamic> json) {
     return Expense(
       id: json['id'],

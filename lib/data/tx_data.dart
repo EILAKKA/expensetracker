@@ -4,24 +4,15 @@ import 'package:expenstracker/screens/pages/analytics_view.dart';
 import 'package:expenstracker/screens/pages/home_page.dart';
 import 'package:expenstracker/screens/pages/setting_view.dart';
 import 'package:expenstracker/screens/pages/transaction_list_view.dart';
-import 'package:expenstracker/screens/views/add_expense_view.dart';
-import 'package:expenstracker/screens/views/add_income_view.dart';
-import 'package:expenstracker/screens/views/transfer_view.dart';
 import 'package:flutter/material.dart';
 
 class TxData {
   static final List<Widget> screens = [
-    AddTransactionPage(),
     HomePage(),
     AnalyticsView(),
+    AddTransactionPage(),
     TransactionListView(),
     SettingsView(),
-  ];
-
-  static final List<Widget> txViews = [
-    AddIncomeView(),
-    AddExpenseView(),
-    TransferView(),
   ];
 
   static final List<String> txTitle = ["Add Income", "Add Expense", "Transfer"];

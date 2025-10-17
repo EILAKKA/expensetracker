@@ -1,12 +1,15 @@
 import 'package:expenstracker/constants/colors.dart';
 import 'package:expenstracker/models/expense_model.dart';
+
 import 'package:expenstracker/models/transfer_model.dart';
+import 'package:expenstracker/services/expense_service.dart';
 import 'package:expenstracker/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AddExpenseView extends StatefulWidget {
-  const AddExpenseView({super.key});
+  final Function(Expense) addExpense;
+  const AddExpenseView({super.key, required this.addExpense});
 
   @override
   State<AddExpenseView> createState() => _AddExpenseViewState();
@@ -305,7 +308,29 @@ class _AddExpenseViewState extends State<AddExpenseView> {
 
                     Divider(color: kLightGrey, thickness: 5),
 
-                    CustomButton(buttonName: "Add Expense", buttonColor: kRed),
+                    GestureDetector(
+                      onTap: () async {
+                        List<Expense> loadedExpenses = await ExpenseService()
+                            .loadExpenses();
+
+                        Expense expense = Expense(
+                          id: loadedExpenses.length + 1,
+                          amount: _amountControllerEx.text.isEmpty
+                              ? 0
+                              : double.parse(_amountControllerEx.text),
+                          category: expenseCategory,
+                          paymentMethod: paymentMethodEx,
+                          date: _selectedDate,
+                          time: _selectedTime,
+                          description: _noteControllerEx.text,
+                        );
+                        widget.addExpense(expense);
+                      },
+                      child: CustomButton(
+                        buttonName: "Add Expense",
+                        buttonColor: kRed,
+                      ),
+                    ),
                     SizedBox(height: 10),
                   ],
                 ),

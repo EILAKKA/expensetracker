@@ -1,12 +1,14 @@
 import 'package:expenstracker/constants/colors.dart';
 import 'package:expenstracker/models/income_model.dart';
 import 'package:expenstracker/models/transfer_model.dart';
+import 'package:expenstracker/services/income_service.dart';
 import 'package:expenstracker/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AddIncomeView extends StatefulWidget {
-  const AddIncomeView({super.key});
+  final Function(Income) addIncome;
+  const AddIncomeView({super.key, required this.addIncome});
 
   @override
   State<AddIncomeView> createState() => _AddIncomeViewState();
@@ -308,7 +310,29 @@ class _AddIncomeViewState extends State<AddIncomeView> {
 
                     Divider(color: kLightGrey, thickness: 5),
 
-                    CustomButton(buttonName: "Add Income", buttonColor: kGreen),
+                    InkWell(
+                      onTap: () async {
+                        List<Income> loadedIncome = await IncomeService()
+                            .loadIncomes();
+
+                        Income income = Income(
+                          id: loadedIncome.length + 1,
+                          amount: _amountControllerIn.text.isEmpty
+                              ? 0
+                              : double.parse(_amountControllerIn.text),
+                          category: incomeCategory,
+                          paymentMethod: paymentMethod,
+                          date: _selectedDate,
+                          time: _selectedTime,
+                          description: _noteControllerIn.text,
+                        );
+                        widget.addIncome(income);
+                      },
+                      child: CustomButton(
+                        buttonName: "Add Income",
+                        buttonColor: kGreen,
+                      ),
+                    ),
                     SizedBox(height: 10),
                   ],
                 ),
