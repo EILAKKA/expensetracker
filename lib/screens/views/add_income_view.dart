@@ -327,6 +327,9 @@ class _AddIncomeViewState extends State<AddIncomeView> {
                           description: _noteControllerIn.text,
                         );
                         widget.addIncome(income);
+
+                        _amountControllerIn.clear();
+                        _noteControllerIn.clear();
                       },
                       child: CustomButton(
                         buttonName: "Add Income",

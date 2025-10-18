@@ -5,9 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ExpenseService {
   //  expense list
+  static List<Expense> expenseList = [];
 
-  // Define the key for storing incomes in shared preferences
-  List<Expense> expenseList = [];
+  // Define the key for storing Expense in shared preferences
 
   static const String _expenseKey = 'expense';
 

@@ -325,6 +325,9 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                           description: _noteControllerEx.text,
                         );
                         widget.addExpense(expense);
+
+                        _amountControllerEx.clear();
+                        _noteControllerEx.clear();
                       },
                       child: CustomButton(
                         buttonName: "Add Expense",

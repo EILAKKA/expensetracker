@@ -1,4 +1,5 @@
 import 'package:expenstracker/constants/colors.dart';
+import 'package:expenstracker/data/tx_data.dart';
 import 'package:expenstracker/models/expense_model.dart';
 import 'package:expenstracker/models/income_model.dart';
 import 'package:expenstracker/screens/views/add_expense_view.dart';
@@ -20,20 +21,17 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   bool isClicked = true;
   int clickedValue = 0;
 
-  List<Expense> expenseList = [];
-  List<Income> incomeList = [];
-
   void fetchAllExpenses() async {
     List<Expense> loadedExpenses = await ExpenseService().loadExpenses();
     setState(() {
-      expenseList = loadedExpenses;
+      ExpenseService.expenseList = loadedExpenses;
     });
   }
 
   void fetchAllIncomes() async {
     List<Income> loadedIncomes = await IncomeService().loadIncomes();
     setState(() {
-      incomeList = loadedIncomes;
+      TxData.incomeList = loadedIncomes;
     });
   }
 
@@ -41,7 +39,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
     ExpenseService().saveExpense(newExpense, context);
 
     setState(() {
-      expenseList.add(newExpense);
+      ExpenseService.expenseList.add(newExpense);
     });
   }
 
@@ -49,7 +47,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
     IncomeService().saveIncome(newIncome, context);
 
     setState(() {
-      incomeList.add(newIncome);
+      TxData.incomeList.add(newIncome);
     });
   }
 
